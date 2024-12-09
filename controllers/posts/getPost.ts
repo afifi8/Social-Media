@@ -3,12 +3,12 @@ import Post from "../../models/post.model";
 import User from "../../models/user.model";
 
 export const getPost = async (req: Request, res: Response) => {
-  const userId = (req as any).user.id; 
+  const userId = (req as any).user.id;
   try {
     const user = await User.findById(userId).select("savedPost followings");
     if (!user) {
-       res.status(404).json({ error: "User not found" });
-       return;
+      res.status(404).json({ error: "User not found" });
+      return;
     }
 
     const savedPostIds = Array.isArray(user.savedPost) ? user.savedPost : [];
@@ -18,7 +18,7 @@ export const getPost = async (req: Request, res: Response) => {
 
     const posts = await Post.find()
       .populate("userId", "avatar fullName email mainJob")
-        .populate({
+      .populate({
         path: "comments",
         populate: {
           path: "userId",
@@ -32,13 +32,14 @@ export const getPost = async (req: Request, res: Response) => {
         Array.isArray(post.likes) &&
         post.likes.some((like: any) => like.toString() === userId);
 
-      const isSaved =
-        savedPostIds.some(
-          (savedPostId: any) => savedPostId.toString() === (post as any)._id.toString()
-        );
+      const isSaved = savedPostIds.some(
+        (savedPostId: any) =>
+          savedPostId.toString() === (post as any)._id.toString()
+      );
 
-      const isFollowed =
-        followingIds.includes((post.userId as any)._id.toString());
+      const isFollowed = followingIds.includes(
+        (post.userId as any)._id.toString()
+      );
 
       const isCurrentUser = (post.userId as any)._id.toString() === userId;
 

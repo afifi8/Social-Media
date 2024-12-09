@@ -28,7 +28,7 @@ const NotificationsSidebar: React.FC<NotificationsSidebarProps> = ({
 
   return (
     <div
-      className={`absolute bottom-[90px] right-[0] bg-white   shadow-2xl max-h-[800px] overflow-y-auto text-black rounded-lg  p-4 w-[400px]`}
+      className={`absolute bottom-[90px] right-[-100px] bg-white  shadow-2xl max-h-[800px] overflow-y-auto text-black rounded-lg  p-4 w-[400px]`}
     >
       <h4 className="font-bold text-lg mb-2">Notifications</h4>
       {notifications.length > 0 ? (

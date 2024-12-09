@@ -10,7 +10,7 @@ const Page = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden flex pt-5   justify-around">
       <Image
-        src="/R.jpg"
+        src="/black-abstract-dark-3840x2160-9729.jpg"
         alt="Background image"
         fill
         className="absolute z-[-10] object-cover"

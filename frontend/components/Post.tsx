@@ -136,8 +136,8 @@ const Post: React.FC<PostProps> = ({
             <div className="text-slate-900 font-medium">{mainJob}</div>
           </div>
         </Link>
-        {!isCurrentUser && (
-          !isFollow ? (
+        {!isCurrentUser &&
+          (!isFollow ? (
             <button
               onClick={() =>
                 handleBeginFollow(idUser, token, setUser, setIsFollow)
@@ -155,8 +155,7 @@ const Post: React.FC<PostProps> = ({
             >
               Following
             </button>
-          )
-        )}
+          ))}
       </div>
 
       {/* Post Content */}
@@ -230,17 +229,20 @@ const Post: React.FC<PostProps> = ({
             </div>
           </div>
           {comments.length > 0 ? (
-            comments.slice().reverse().map((comment, index) => (
-              <Comment
-                key={index}
-                userId={comment.userId._id}
-                content={comment.content}
-                email={comment.userId.email}
-                avatar={comment.userId.avatar}
-                mainJob={comment.userId.mainJob}
-                fullName={comment.userId.fullName}
-              />
-            ))
+            comments
+              .slice()
+              .reverse()
+              .map((comment, index) => (
+                <Comment
+                  key={index}
+                  userId={comment.userId._id}
+                  content={comment.content}
+                  email={comment.userId.email}
+                  avatar={comment.userId.avatar}
+                  mainJob={comment.userId.mainJob}
+                  fullName={comment.userId.fullName}
+                />
+              ))
           ) : (
             <p className="text-sm text-center mb-4 w-full text-gray-700">
               No comments yet. Be the first!

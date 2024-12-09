@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/assets/ImagePosts
+/assets/userAvatars
 /.pnp
 .pnp.*
 .yarn/*

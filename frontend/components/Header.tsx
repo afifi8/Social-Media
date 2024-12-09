@@ -101,11 +101,11 @@ const Header = () => {
     : "/default-avatar.png";
 
   return (
-    <div className="z-10 fixed left-32 right-32 bg-white/10 h-[80px] rounded-t-3xl backdrop-blur-3xl bottom-0 flex items-center justify-around">
+    <div className="z-10 fixed left-32 right-32 bg-[#E6EEFA] h-[80px] rounded-t-3xl backdrop-blur-3xl bottom-0 flex items-center justify-around">
       {/* Navigation links */}
       <NavLink icon={AiFillHome} label="Home" />
       <NavLink icon={RiCommunityFill} label="Communities" />
-      <Link href="/profile" className="relative text-white top-[-20px]">
+      <Link href="/profile" className="relative top-[-20px]">
         <Image
           src={profileImage}
           alt="Profile"

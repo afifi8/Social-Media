@@ -2,35 +2,40 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Following = ({
-  name,
+interface FollowTypes {
+  fullName: string | undefined;
+  email: string | undefined;
+  avatar: string | undefined;
+  _id: string | undefined;
+  mainJob: string | undefined;
+}
+
+const FollowLink: React.FC<FollowTypes> = ({
+  fullName,
   email,
+  avatar,
+  _id,
   mainJob,
-  imageSrc,
-}: {
-  name: string;
-  email: string;
-  mainJob: string;
-  imageSrc: string;
 }) => {
   return (
-    <div className="w-[95%] rounded-xl mb-3 mx-auto">
-      <Link href="#" className="m-3 p-2 flex items-center">
+ 
+      <Link href={`/user/${_id}`} className="m-3 p-2 flex items-center">
+
         <Image
-          src={`http://localhost:5000/assets/userAvatars/${imageSrc}`}
-          width={2000}
-          height={2000}
+          src={`http://localhost:5000/assets/userAvatars/${avatar}`}
+          width={50}
+          height={50}
           alt={`${name}'s profile image`}
           className="rounded-full object-cover w-[50px] h-[50px]"
         />
         <div className="text-sm text-white font-semibold ml-3">
-          {name}
+          {fullName}
           <div className="text-slate-200 font-normal">{email}</div>
           <div className="text-slate-200 font-medium">{mainJob}</div>
         </div>
       </Link>
-    </div>
+
   );
 };
 
-export default Following;
+export default FollowLink;

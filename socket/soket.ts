@@ -24,12 +24,11 @@ export const getReceiverSocketId = (receiverId: string): string | undefined => {
 
 // Socket.IO events
 io.on("connection", (socket) => {
-
   const token = socket.handshake.query.token as string | undefined;
 
   // Validate token
   if (!token) {
-    socket.disconnect(); 
+    socket.disconnect();
     return;
   }
 
