@@ -28,8 +28,6 @@ const getProfileCurrentUser = async (
       return;
     }
 
-    console.log(user);
-
     res.status(200).json({ message: "Profile fetched successfully", user });
   } catch (error) {
     console.error("Error fetching user profile:", error);

@@ -28,7 +28,10 @@ router.patch("/editMainJob", editMainJob);
 router.patch("/addSkill", addSkill);
 router.delete("/deleteSkill", deleteSkill);
 router.get("/getProfileCurrentUser", getProfileCurrentUser);
-router.patch("/follow/:id", followUser);
+router.patch("/follow/:id", (req, res, next) => {
+  const io = req.app.get("io");
+  followUser(req, res, io).catch(next);
+});
 router.patch("/unfollow/:id", unfollowUser);
 router.get("/getUser/:id", getUser);
 

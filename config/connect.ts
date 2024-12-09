@@ -18,3 +18,4 @@ export const connectToDb = () => {
       console.error(" 😅😁 Database connection failed", error);
     });
 };
+

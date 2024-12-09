@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import Post from "../../models/post.model";
 import User from "../../models/user.model";
+import { Server } from "socket.io";
 
-export const unLikedPost = async (req: Request, res: Response) => {
+export const unLikedPost = async (req: Request, res: Response , io: Server ) => {
   try {
     const { id } = req.params;
     const userId = (req as any).user?.id; // Assuming `authMiddleware` attaches the user to the request

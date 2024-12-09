@@ -1,33 +1,30 @@
 import mongoose, { Schema, Document, Types } from "mongoose";
 
 export interface IPost extends Document {
-  content: string;
   senderUserId: Types.ObjectId;
-  senderUserName: string;
-  postId: Types.ObjectId;
+  postId?: Types.ObjectId;
   isRead: boolean;
+  action: string;
 }
 
 const notificationSchema = new Schema<IPost>({
-  content: {
-    type: String,
-    required: true,
-  },
   senderUserId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
-  },
-  senderUserName: {
-    type: String,
-    required: true,
+    ref: "User",
   },
   postId: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
+    ref: "Post",
   },
   isRead: {
     type: Boolean,
     default: false,
+  },
+  action: {
+    type: String,
+    enum: ["like", "follow", "comment"],
+    required: true,
   },
 });
 

@@ -19,7 +19,7 @@ const InfoProfilePage = () => {
             <h1 className=" rounded-xl bg-slate-300 m-1 py-2 w-[100px] animate-pulse"></h1>
           </div>
         </div>
-    
+
         <div className=" ml-8">
           <h1 className=" rounded-xl bg-slate-300 m-1 py-2 px-10 w-[100px] animate-pulse "></h1>
           <div className=" ml-10 ">
@@ -38,17 +38,15 @@ const InfoProfilePage = () => {
       <div className="m-3 p-2 flex items-center">
         <Image
           src={`http://localhost:5000/assets/userAvatars/${user?.avatar}`}
-          width={50}
-          height={50}
+          width={2000}
+          height={2000}
           alt={`Ahmed Profile`}
           className="rounded-full object-cover w-[60px] h-[60px]"
         />
         <div className="text-sm text-white font-semibold ml-3">
           {user?.fullName}
           <div className="text-slate-200 font-normal">{user?.email} </div>
-          <h1 className=" text-xs text-white font-semibold">
-            {user?.mainJob}
-          </h1>
+          <h1 className=" text-xs text-white font-semibold">{user?.mainJob}</h1>
         </div>
       </div>
 

@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 import User from "../../models/user.model";
 import mongoose from "mongoose";
+import Notification from "../../models/notification.model";
+import { getReceiverSocketId } from "../../socket/soket";
+import { Server } from "socket.io";
 
-const followUser = async (req: Request, res: Response) => {
-  const userId = (req as any).user?.id;
+const followUser = async (req: Request, res: Response , io : Server) => {
+  const userId = (req as any).user?.id; 
   const followId = req.params.id;
 
   if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
@@ -49,6 +52,32 @@ const followUser = async (req: Request, res: Response) => {
       .populate("followers", "fullName avatar email _id mainJob")
 
       .lean();
+
+    const newNotification = new Notification({
+      action: "follow",
+      senderUserId: user?._id,
+    });
+
+    await newNotification.save();
+
+    userToFollow.notifications.push((newNotification as any)._id);
+    await userToFollow.save();
+
+    
+    const populatedNotification = await newNotification.populate(
+      "senderUserId",
+      "fullName avatar _id"
+    );
+
+
+    const receiverSocketId = getReceiverSocketId((userToFollow as any)._id);
+
+    console.log(receiverSocketId);
+    if (receiverSocketId) {
+      // io.to(<socket_id>).emit() used to send events to specific client
+      io.to(receiverSocketId).emit("newNotification", populatedNotification);
+    }
+
 
     res.status(200).json({
       message: "User followed successfully",

@@ -12,21 +12,11 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // Handle login button click
-  // const handleLoginClick = async () => {
-  //   if (!email || !password) {
-  //     alert("Please fill in all fields.");
-  //     return;
-  //   }
-
-  //   await handleLogin(email, password, router);
-  // };
-
   return (
     <div className="relative w-full h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/Blue-Abstract-Background-4K-Wallpaper.jpg"
+        src="/R3.jpg"
         alt="Background image"
         fill
         className="absolute z-[-10] object-cover"
